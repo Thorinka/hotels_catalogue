@@ -9,5 +9,5 @@ app_name = UsersConfig.name
 urlpatterns = [
     path('', LoginView.as_view(template_name='users/signin.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='users/signin.html'), name='logout'),
-    path('register/', RegisterView.as_view(template_name='users/signnup'), name='register'),
+    path('register/', RegisterView.as_view(), name='register'),
 ]

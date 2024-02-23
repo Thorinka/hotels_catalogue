@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from users.models import User
 
 
 class StyleFormMixin:
@@ -13,3 +13,11 @@ class RegisterForm(StyleFormMixin, UserCreationForm):
     class Meta:
         model = User
         fields = ('email', 'password1', 'password2')
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_active = True
+        user.is_staff = False
+        if commit:
+            user.save()
+        return user
