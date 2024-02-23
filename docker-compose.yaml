@@ -17,13 +17,21 @@ services:
       timeout: 5s
       retries: 5
 
-
   app:
     build: .
     env_file:
       - .env
-    command: python manage.py runserver 0.0.0.0:8000
+    command: sh -c "while ! pg_isready -U postgres -h db; do sleep 1; done && python manage.py runserver 0.0.0.0:8000"
     ports:
       - '8000:8000'
     depends_on:
       - db
+
+  nginx:
+    image: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
