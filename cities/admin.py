@@ -7,4 +7,3 @@ from cities.models import City
 class CityAdmin(admin.ModelAdmin):
     list_display = ('id', 'city_name')
     search_fields = ('city_name',)
-

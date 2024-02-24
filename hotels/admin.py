@@ -3,7 +3,6 @@ from django.contrib import admin
 from hotels.models import Hotel
 
 
-# Register your models here.
 @admin.register(Hotel)
 class HotelAdmin(admin.ModelAdmin):
     list_display = ('id', 'hotel_name', 'address', 'phone_number', 'email', 'city_name')
