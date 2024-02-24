@@ -1,9 +1,8 @@
-from django.shortcuts import render
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from hotels.models import Hotel
 from .serializers import HotelSerializer
+
 
 class HotelListView(APIView):
     def get(self, request):
